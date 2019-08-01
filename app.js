@@ -256,6 +256,12 @@ var controller = (function(budgetControl, UIControl){
   return{
       init: function(){
           console.log('Aplication has started');
+          UIControl.displayBudget({
+            budget: 0,
+            totalIncome: 0,
+            totalExpenses: 0,
+            percentage: 0
+           });
           setupEventListeners();
       }
   }  
