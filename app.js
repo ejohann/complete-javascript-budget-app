@@ -25,6 +25,29 @@ var budgetController = (function(){
      inc: 0
   }
  };
+  
+  return{
+      addItem: function(type, des, val){
+        var newItem, ID;
+          
+        ID = 0;
+        
+        //Create new item based on expense or income   
+        if(type === 'exp')
+          {
+             newItem =  new Expense(ID, des, val); 
+          }
+        else if(type === 'inc'){
+             newItem =  new Income(ID, des, val);
+         }
+    
+        // add item into data structure  
+        data.allItems[type].push(newItem);
+        
+        // return new item
+        return newItem;
+      }
+  };    
     
 })();
 
