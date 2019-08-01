@@ -32,7 +32,9 @@ var controller = (function(budgetControl, UIControl){
     });
     
     document.addEventListener('keypress', function(event){
-        console.log(event);
+        if(event.keyCode === 13){
+            console.log('ENTER was pressed');
+         } 
     });
     
 })(budgetController, UIController);
