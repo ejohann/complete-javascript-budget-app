@@ -31,7 +31,7 @@ var controller = (function(budgetControl, UIControl){
         // 5. Display the bidget on the UI
     });
     
-    document.addEventListener('keypressed', function(event){
+    document.addEventListener('keypress', function(event){
         console.log(event);
     });
     
