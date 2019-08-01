@@ -126,6 +126,9 @@ var UIController = (function(){
           fieldsArray.forEach(function(current, index, array){
               current.value = '';
           });
+        
+          // place cursor in first field
+          fieldsArray[0].focus();
             
         },
         
