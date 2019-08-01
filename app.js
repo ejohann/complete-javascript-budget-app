@@ -20,7 +20,15 @@ var UIController = (function(){
 var controller = (function(budgetControl, UIControl){
  
     document.querySelector('.add__btn').addEventListener('click', function(){
-        console.log('add button');
+        // 1.  Get the field input data
+        
+        // 2. Add the item to the budget controller
+        
+        // 3. Calculate the budget
+        
+        // 4. Add the item to the UI
+        
+        // 5. Display the bidget on the UI
     });
     
 })(budgetController, UIController);
