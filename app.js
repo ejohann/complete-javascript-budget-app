@@ -30,7 +30,8 @@ var budgetController = (function(){
       addItem: function(type, des, val){
         var newItem, ID;
           
-        ID = 0;
+        // Create a new ID
+        ID = data.allItems[type][data.allItems[type].length - 1].id + 1; // last id + 1
         
         //Create new item based on expense or income   
         if(type === 'exp')
