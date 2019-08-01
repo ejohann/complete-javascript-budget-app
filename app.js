@@ -19,4 +19,8 @@ var UIController = (function(){
 ******************************************/
 var controller = (function(budgetControl, UIControl){
  
+    document.querySelector('.add__btn').addEventListener('click', function(){
+        console.log('add button');
+    });
+    
 })(budgetController, UIController);
