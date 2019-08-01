@@ -47,6 +47,10 @@ var budgetController = (function(){
         
         // return new item
         return newItem;
+      },
+      
+      testing: function(){
+          console.log(data);
       }
   };    
     
@@ -97,10 +101,13 @@ var controller = (function(budgetControl, UIControl){
     };
       
     var ctrlAddItem = function(){
+        var input, newItem;
+        
         // 1.  Get the field input data
-        var input = UIControl.getInput();
+        input = UIControl.getInput();
          
         // 2. Add the item to the budget controller
+        newItem = budgetControl.addItem(input.tpye, input.description, input.value);
         
         // 3. Calculate the budget
         
