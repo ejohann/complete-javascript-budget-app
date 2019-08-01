@@ -43,6 +43,7 @@ var controller = (function(budgetControl, UIControl){
          document.querySelector(DOM.inputButton).addEventListener('click', ctrlAddItem);
          document.addEventListener('keypress', function(event){
             if(event.keyCode === 13 || event.which === 13){
+                event.preventDefault(); // prevents enter key triggering a click event
                 ctrlAddItem();
              } 
           });
