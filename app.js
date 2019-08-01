@@ -19,7 +19,7 @@ var UIController = (function(){
 ******************************************/
 var controller = (function(budgetControl, UIControl){
  
-    document.querySelector('.add__btn').addEventListener('click', function(){
+    var ctrlAddItem = function(){
         // 1.  Get the field input data
         
         // 2. Add the item to the budget controller
@@ -29,11 +29,15 @@ var controller = (function(budgetControl, UIControl){
         // 4. Add the item to the UI
         
         // 5. Display the bidget on the UI
-    });
+        
+        console.log('It works');
+    }
+    
+    document.querySelector('.add__btn').addEventListener('click', ctrlAddItem);
     
     document.addEventListener('keypress', function(event){
         if(event.keyCode === 13 || event.which === 13){
-            console.log('ENTER was pressed');
+           ctrlAddItem();
          } 
     });
     
