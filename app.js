@@ -31,7 +31,8 @@ var calculateTotal = function(type){
   totals: {
      exp: 0,
      inc: 0
-  }
+  },
+  budget: 0
  };
   
   return{
@@ -71,6 +72,7 @@ var calculateTotal = function(type){
           calculateTotal('inc');
           
         // calculate the budget: income - expenses
+          data.budget = data.totals.inc - data.totals.exp;
           
         // calculate the percentage of income for expenses
           
