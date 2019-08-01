@@ -123,7 +123,7 @@ var UIController = (function(){
           fieldsArray = Array.prototype.slice.call(fields); // convert list to array
         
           // clear all fields    
-          fieldsArray.foreach(function(current, index, array){
+          fieldsArray.forEach(function(current, index, array){
               current.value = '';
           });
             
