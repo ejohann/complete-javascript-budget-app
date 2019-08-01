@@ -172,7 +172,8 @@ var controller = (function(budgetControl, UIControl){
         // 1.  Get the field input data
         input = UIControl.getInput();
          
-        // 2. Add the item to the budget controller
+        if(input.description !== '' && !isNaN(input.value) && input.value > 0){
+              // 2. Add the item to the budget controller
         newItem = budgetControl.addItem(input.type, input.description, input.value);
         
         // 3. Add the item to the UI
@@ -183,6 +184,8 @@ var controller = (function(budgetControl, UIControl){
         
         // 5. Calculate and display the budget
           updateBudget();
+        }
+      
         
     };
     
