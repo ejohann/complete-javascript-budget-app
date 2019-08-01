@@ -73,7 +73,9 @@ var UIController = (function(){
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
-        inputButton: '.add__btn'
+        inputButton: '.add__btn',
+        incomeContainer: '.income__list',
+        expenseContainer: '.expense__list'
     };
     
     return {
@@ -87,13 +89,19 @@ var UIController = (function(){
         
         addListItem: function(obj, type){
             
-            var html, newHtml;
+            var html, newHtml, element;
             
             // create HTML string with placeholder text
             if(type === 'inc'){
+                
+                element = DOMStrings.incomeContainer;
+                
                 html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%/div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
              }
             else if(type === 'exp'){
+                
+             element = DOMStrings.expenseContainer;    
+                
               html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';   
              }
                    
@@ -104,7 +112,7 @@ var UIController = (function(){
             newHtml = newHtml.replace('%value%', obj.value);
             
             // insert the HTML into the DOM
-            
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
         
         getDOMstrings: function(){
@@ -142,10 +150,11 @@ var controller = (function(budgetControl, UIControl){
         // 3. Calculate the budget
         
         // 4. Add the item to the UI
+        UIControl.addListItem(newItem, input.type);
         
         // 5. Display the bidget on the UI
         
-        console.log(input);
+      //  console.log(input);
     };
     
   return{
