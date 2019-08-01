@@ -31,7 +31,14 @@ var budgetController = (function(){
         var newItem, ID;
           
         // Create a new ID
-        ID = data.allItems[type][data.allItems[type].length - 1].id + 1; // last id + 1
+        if(data.allItems[type].length > 0 )
+          {
+            ID = data.allItems[type][data.allItems[type].length - 1].id + 1; // last id + 1
+          }
+        else{
+              ID = 0;
+          }
+        
         
         //Create new item based on expense or income   
         if(type === 'exp')
@@ -107,7 +114,7 @@ var controller = (function(budgetControl, UIControl){
         input = UIControl.getInput();
          
         // 2. Add the item to the budget controller
-        newItem = budgetControl.addItem(input.tpye, input.description, input.value);
+        newItem = budgetControl.addItem(input.type, input.description, input.value);
         
         // 3. Calculate the budget
         
