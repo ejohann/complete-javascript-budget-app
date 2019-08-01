@@ -1,6 +1,6 @@
-var budgetController = (function){
+var budgetController = (function(){
     var x = 23;
-    var add(a){
+    var add = function(a){
         return x + a;
     }
   
@@ -9,7 +9,7 @@ var budgetController = (function){
             return (add(b));
         }
     }
-}();
+})();
 
 var UIController = (function(){
     //some code
