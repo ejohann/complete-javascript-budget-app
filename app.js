@@ -125,7 +125,8 @@ var calculateTotal = function(type){
 *** UI CONTROLLER
 **************************************/
 var UIController = (function(){
-    //some code
+    
+    //DOM strings object
     var DOMStrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
@@ -138,68 +139,66 @@ var UIController = (function(){
         expenseLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
         container: '.container'
-    };
+      };
     
+    // functions to be return - global
     return {
+        
+        // get the inputs
         getInput: function(){
             return{
-            type: document.querySelector(DOMStrings.inputType).value, //inc of exp
-            description: document.querySelector(DOMStrings.inputDescription).value,
-            value: parseFloat(document.querySelector(DOMStrings.inputValue).value)
-           }
-        },
+                type: document.querySelector(DOMStrings.inputType).value, //inc or exp
+                description: document.querySelector(DOMStrings.inputDescription).value,
+                value: parseFloat(document.querySelector(DOMStrings.inputValue).value)
+              }
+          },
         
+        // add an item
         addListItem: function(obj, type){
-            
             var html, newHtml, element;
             
             // create HTML string with placeholder text
-            if(type === 'inc'){
-                
+            if(type === 'inc'){    
                 element = DOMStrings.incomeContainer;
-                
                 html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
-             }
-            else if(type === 'exp'){
-                
-             element = DOMStrings.expenseContainer;    
-                
-              html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';   
-             }
+              }
+            else if(type === 'exp'){  
+                element = DOMStrings.expenseContainer;    
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';   
+              }
                    
             // replace the placeholder text
-            
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
             newHtml = newHtml.replace('%value%', obj.value);
             
             // insert the HTML into the DOM
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
-        },
+          },
         
-        clearFields: function(){
-          var fields, fieldsArray;
-          
-          fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);  
-        
-          fieldsArray = Array.prototype.slice.call(fields); // convert list to array
-        
-          // clear all fields    
-          fieldsArray.forEach(function(current, index, array){
-              current.value = '';
-          });
-        
-          // place cursor in first field
-          fieldsArray[0].focus();
+        deleteListItem: function(){
             
-        },
+          },
         
+        // clear the fields after item has been entered
+        clearFields: function(){
+            var fields, fieldsArray;
+            fields = document.querySelectorAll(DOMStrings.inputDescription + ', ' + DOMStrings.inputValue);  
+            fieldsArray = Array.prototype.slice.call(fields); // convert list to array
+            // clear all fields    
+            fieldsArray.forEach(function(current, index, array){
+                current.value = '';
+              });
+            // place cursor in first field
+            fieldsArray[0].focus();
+          },
+        
+        // display the budget
         displayBudget: function(obj){
             document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget;
             document.querySelector(DOMStrings.incomeLabel).textContent = obj.totalIncome;
             document.querySelector(DOMStrings.expenseLabel).textContent = obj.totalExpenses;
-            
-            
+             // only diplay percentage if greater that 0            
             if(obj.percentage > 0)
               {
                   document.querySelector(DOMStrings.percentageLabel).textContent = obj.percentage + '%'; 
@@ -208,12 +207,12 @@ var UIController = (function(){
               {
                   document.querySelector(DOMStrings.percentageLabel).textContent = '---'; 
               }
-        },
+          },
         
         getDOMstrings: function(){
-          return DOMStrings;
-        }
-    }
+            return DOMStrings;
+          }
+      }
 })();
 
 
