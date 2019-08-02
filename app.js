@@ -252,7 +252,7 @@ var controller = (function(budgetControl, UIControl){
     
     // delete item
     var ctrlDeleteItem = function(event){
-        console.log(event.target);        
+        console.log(event.target.parentNode.parentNode.parentNode.parentNode);        
     };
     
   return{
