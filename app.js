@@ -194,7 +194,12 @@ var UIController = (function(){
             // return formatted number
             return (type === 'exp' ? sign = '-' : sign = '+') + ' ' + int + '.' + dec;
           };
-        
+    
+    var nodeListForEach = function(list, callback){
+        for(var i = 0; i < list.length; i++){
+            callback(list[i], i);
+          }
+     };
     
     // functions to be return - global
     return {
@@ -270,11 +275,6 @@ var UIController = (function(){
         // display perentages
         displayPercentages: function(percentages){           
             var fields = document.querySelectorAll(DOMStrings.expensesPercentageLabel);
-            var nodeListForEach = function(list, callback){
-                for(var i = 0; i < list.length; i++){
-                    callback(list[i], i);
-                  }
-              };
             nodeListForEach(fields, function(current, index){
                  if(percentages[index] > 0){
                       current.textContent = percentages[index] + '%';
@@ -293,6 +293,18 @@ var UIController = (function(){
             months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'November', 'December'];
             month = now.getMonth();
             document.querySelector(DOMStrings.dateLabel).textContent = months[month] + ' ' + year;
+          },
+        
+        changedType: function(){
+          var fields = document.querySelectorAll(
+                DOMStrings.inputType + ',' +
+                DOMStrings.inputDescription + ',' +
+                DOMStrings.inputValue
+              );
+        
+           nodeListForEach(fields, function(cur){
+                cur.classList.toggle('red-focus');   
+            });
           },
         
         getDOMstrings: function(){
@@ -321,6 +333,9 @@ var controller = (function(budgetControl, UIControl){
           });
         //listen for delete item click
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+        // change the outline on input
+        document.querySelector(DOM.inputType).addEventListener('change', UIControl.changedType);
+        
     };
     
     // update the budget
