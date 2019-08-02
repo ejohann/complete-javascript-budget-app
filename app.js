@@ -207,53 +207,50 @@ var UIController = (function(){
 ******************************************/
 var controller = (function(budgetControl, UIControl){
  
+     // initialise event listeners
     var setupEventListeners = function(){
-         var DOM = UIControl.getDOMstrings();
-         document.querySelector(DOM.inputButton).addEventListener('click', ctrlAddItem);
-         document.addEventListener('keypress', function(event){
+        var DOM = UIControl.getDOMstrings();   
+        // listen for add item click
+        document.querySelector(DOM.inputButton).addEventListener('click', ctrlAddItem);
+        //listen for add item 'enter'
+        document.addEventListener('keypress', function(event){
             if(event.keyCode === 13 || event.which === 13){
                 event.preventDefault(); // prevents enter key triggering a click event
                 ctrlAddItem();
              } 
           });
-        
+        //listen for delete item click
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
     };
     
-    
+    // update the budget
     var updateBudget = function(){
-    
         // 1. Calculate the budget
         budgetControl.calculateBudget();
-        
         // 2.  Return the budget
         var budget = budgetControl.getBudget();
-        
         // 3.  Display the budget on the UI
         UIControl.displayBudget(budget);
      };
       
+    // add item
     var ctrlAddItem = function(){
         var input, newItem;
-        
         // 1.  Get the field input data
         input = UIControl.getInput();
-         
         if(input.description !== '' && !isNaN(input.value) && input.value > 0){
-              // 2. Add the item to the budget controller
-        newItem = budgetControl.addItem(input.type, input.description, input.value);
-        
-        // 3. Add the item to the UI
-        UIControl.addListItem(newItem, input.type);
-        
-        // 4. Clear the fields
-        UIControl.clearFields();
-        
-        // 5. Calculate and display the budget
-          updateBudget();
-        }    
-    };
+            // 2. Add the item to the budget controller
+            newItem = budgetControl.addItem(input.type, input.description, input.value);
+            // 3. Add the item to the UI
+            UIControl.addListItem(newItem, input.type);
+            // 4. Clear the fields
+            UIControl.clearFields();   
+            // 5. Calculate and display the budget
+            updateBudget();
+         }    
+     };
     
+    // delete item
     var ctrlDeleteItem = function(event){
         console.log(event.target);        
     };
