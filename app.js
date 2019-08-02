@@ -283,6 +283,7 @@ var controller = (function(budgetControl, UIControl){
             UIControl.deleteListItem(itemID);
             
             // 3. Update and show the new budget
+            updateBudget();
          }
     };
     
