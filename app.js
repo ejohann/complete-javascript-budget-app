@@ -168,7 +168,8 @@ var UIController = (function(){
         expenseLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
         container: '.container',
-        expensesPercentageLabel: '.item__percentage'
+        expensesPercentageLabel: '.item__percentage',
+        dateLabel: '.budget__title--month'
       };
     
     // formatting numbers
@@ -285,6 +286,13 @@ var UIController = (function(){
               });
           },
         
+        displayMonth: function(){
+            var now, year, month;
+            now = new Date();
+            year = now.getFullYear();
+            document.querySelector(DOMStrings.dateLabel).textContent = year;
+          },
+        
         getDOMstrings: function(){
             return DOMStrings;
           }
@@ -376,6 +384,7 @@ var controller = (function(budgetControl, UIControl){
   return{
       init: function(){
           console.log('Aplication has started');
+          UIControl.displayMonth();
           UIControl.displayBudget({
             budget: 0,
             totalIncome: 0,
