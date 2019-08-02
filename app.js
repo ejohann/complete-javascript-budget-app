@@ -252,7 +252,15 @@ var controller = (function(budgetControl, UIControl){
     
     // delete item
     var ctrlDeleteItem = function(event){
-        console.log(event.target.parentNode.parentNode.parentNode.parentNode.id);        
+        var itemID, splitID, type, ID;
+        
+        itemID = event.target.parentNode.parentNode.parentNode.parentNode.id; 
+        
+        if(itemID){
+             splitID = itemID.split('-');
+             type = splitID[0];
+             ID = splitID[1];
+         }
     };
     
   return{
